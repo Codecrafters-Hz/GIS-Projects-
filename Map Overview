@@ -1,0 +1,21 @@
+import osmnx as ox
+import matplotlib.pyplot as plt
+
+# Correct city-level place name
+city_name = "Budapest, Hungary"
+
+# Get administrative boundary as GeoDataFrame
+admin = ox.geocode_to_gdf(city_name)
+
+# Plot the city boundary
+fig, ax = plt.subplots(figsize=(8, 8))
+admin.plot(
+    ax=ax,
+    facecolor="none",
+    edgecolor="blue",
+    linewidth=2
+)
+
+plt.title("Budapest City Boundary")
+plt.axis("off")
+plt.show()
