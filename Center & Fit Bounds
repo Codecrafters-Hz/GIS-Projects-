@@ -1,0 +1,14 @@
+# Get bounding box from GeoDataFrame
+minx, miny, maxx, maxy = admin.total_bounds
+
+# Center of the bounding box (lat, lon)
+center = [
+    (miny + maxy) / 2,  # latitude
+    (minx + maxx) / 2   # longitude
+]
+
+# Fit bounds for Folium (southWest, northEast)
+fit_bounds = [
+    [miny, minx],  # bottom-left (lat, lon)
+    [maxy, maxx]   # top-right (lat, lon)
+]
