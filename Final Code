@@ -1,0 +1,67 @@
+
+# Base map
+m = folium.Map(
+    location=center,
+    zoom_start=11,
+    tiles="CartoDB dark_matter",
+    control_scale=True
+)
+
+# Feature groups
+admin_layer = folium.FeatureGroup(name="Admin Boundary", show=True)
+pubs_layer = folium.FeatureGroup(name="Pubs", show=True)
+sports_layer = folium.FeatureGroup(name="Gyms & Sports", show=True)
+healthcare_layer = folium.FeatureGroup(name="Healthcare", show=True)
+
+# Administrative boundary
+folium.GeoJson(
+    admin,
+    style_function=lambda feature: {
+        "fillColor": "#ffffff",   # FIX: correct key
+        "color": "#ffffff",
+        "weight": 3,
+        "fillOpacity": 0.15
+    }
+).add_to(admin_layer)
+
+# Function to add point layers
+def add_points(gdf, feature_group, color):
+    if gdf is not None and not gdf.empty:
+        for _, row in gdf.iterrows():
+            geom = row.geometry
+            if geom is None:
+                continue
+
+            lat, lon = geom.y, geom.x
+            folium.CircleMarker(
+                location=[lat, lon],
+                radius=2,
+                weight=0.5,
+                fill=True,
+                fill_opacity=0.8,
+                color=color,
+                fill_color=color
+            ).add_to(feature_group)
+
+# Add POI layers
+add_points(pubs, pubs_layer, "#ff9933")
+add_points(sports, sports_layer, "#33ccff")
+add_points(healthcare, healthcare_layer, "#ff3333")
+
+# Add layers to map
+admin_layer.add_to(m)
+pubs_layer.add_to(m)
+sports_layer.add_to(m)
+healthcare_layer.add_to(m)
+
+# Layer control
+folium.LayerControl(collapsed=False, position="topright").add_to(m)
+
+# Fit bounds if available
+if fit_bounds:
+    m.fit_bounds(fit_bounds)
+
+# Save map
+m.save("budapest_pubs.html")
+
+m
