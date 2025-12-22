@@ -1,0 +1,8 @@
+def to_points(gdf):
+    if gdf. empty:
+        return gdf
+    return gdf.to_crs(3857).centroid.to_crs(4326).to_frame("geometry")
+
+pubs = to_points(pubs)
+sports = to_points(sports)
+healthcare = to_points(healthcare)
