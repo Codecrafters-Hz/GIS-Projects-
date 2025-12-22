@@ -1,0 +1,3 @@
+city_name = " Budapest"
+admin = ox.geocode_to_gdf(city_name)
+admin.plot()
