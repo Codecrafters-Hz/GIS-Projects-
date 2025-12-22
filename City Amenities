@@ -1,0 +1,5 @@
+pubs = ox.features_from_place(city_name, {"amenity" :"pub"})
+sports = ox.features_from_place(city_name, {"leisure" :["gym","sports_centre"]})
+healthcare = ox.features_from_place(city_name, {"amenity" :["hospitals","clinics","doctors","pharmacy"]})
+print("Pubs:", len(pubs), "| Sports:", len(sports), "| Healthcare:",len(healthcare))
+
