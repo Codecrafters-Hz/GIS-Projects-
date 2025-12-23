@@ -1,0 +1,7 @@
+colormap = LinearColormap(
+    colors=list(reversed(cm.linear.RdYlGn_11.colors)),
+    vmin=gdf["_Medianmean"].min(),
+    vmax=gdf["_Medianmean"].max()
+).to_step(10)
+
+colormap
