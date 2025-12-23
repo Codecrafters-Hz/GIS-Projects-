@@ -12,3 +12,13 @@ fit_bounds = [
     [miny, minx],  # bottom-left (lat, lon)
     [maxy, maxx]   # top-right (lat, lon)
 ]
+
+
+#Color Bounds GIS 2 Traffic Accidents 
+colormap = LinearColormap(
+    colors=list(reversed(cm.linear.RdYlGn_11.colors)),
+    vmin=gdf["_Medianmean"].min(),
+    vmax=gdf["_Medianmean"].max()
+).to_step(10)
+
+colormap
