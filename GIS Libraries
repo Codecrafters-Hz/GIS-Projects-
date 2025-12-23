@@ -2,3 +2,10 @@ import osmnx as ox
 import geopandas as gpd 
 import folium
 print(ox.__version__)
+
+
+# GIS Project 2 - Traffic Accident
+import branca.colormap as cm
+
+#https://alto.team/boda/
+#https://drive.google.com/file/d/14Q64gvkqDmaGy2ToeOjIUyyyuYPy9bqN/view
